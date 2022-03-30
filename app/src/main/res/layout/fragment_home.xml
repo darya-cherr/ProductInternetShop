@@ -3,14 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:background="@drawable/background"
+    android:backgroundTint="#6DFFFFFF"
+    android:backgroundTintMode="src_over">
 
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home"
-        android:textSize="48sp"
-        android:gravity="center" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/gudea"
+            android:textStyle="bold"
+            android:text="@string/home_dishes_shop"
+            android:textColor="@color/home_text_color"
+            android:textSize="40sp"
+            android:layout_marginTop="16dp"/>
+
+
+    </RelativeLayout>
 
 </FrameLayout>
