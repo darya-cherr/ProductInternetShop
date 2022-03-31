@@ -2,5 +2,11 @@
     <string name="app_name">ProductInternetShop</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home_dishes_shop">Candles Shop</string>
+    <string name="item_brand">Brand</string>
+    <string name="item_name">Name</string>
+    <string name="item_price">Price</string>
+
+
+
 
 </resources>

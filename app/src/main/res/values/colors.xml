@@ -10,4 +10,5 @@
     <color name="home_text_color">#407B79</color>
     <color name="item_color">#9DBEAB</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

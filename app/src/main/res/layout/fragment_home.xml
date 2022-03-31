@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HomeFragment"
     android:background="@drawable/background"
     android:backgroundTint="#6DFFFFFF"
     android:backgroundTintMode="src_over">
 
 
+
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_rect">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
             android:fontFamily="@font/gudea"
             android:textStyle="bold"
             android:text="@string/home_dishes_shop"
             android:textColor="@color/home_text_color"
             android:textSize="40sp"
             android:layout_marginTop="16dp"/>
-
-
     </RelativeLayout>
 
-</FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@drawable/rect_shadow"/>
+
+
+
+
+
+
+</LinearLayout>
