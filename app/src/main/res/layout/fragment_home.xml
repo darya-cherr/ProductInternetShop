@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".HomeFragment"
     android:background="@drawable/background"
@@ -10,33 +11,50 @@
     android:backgroundTintMode="src_over">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_rect">
 
-        <TextView
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:background="@drawable/button_about_dev"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:fontFamily="@font/gudea"
-            android:textStyle="bold"
             android:text="@string/home_dishes_shop"
             android:textColor="@color/home_text_color"
             android:textSize="40sp"
-            android:layout_marginTop="16dp"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
+        android:layout_marginTop="-1dp"
         android:background="@drawable/rect_shadow"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch_button"
+        android:textOff="@string/candles"
+        android:textOn="@string/diffusers"
+        android:layout_gravity="center"
+        android:thumb="@drawable/switch_thumb"
+        app:track="@drawable/switch_track"
+        app:showText="true">
+    </androidx.appcompat.widget.SwitchCompat>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginBottom="80dp"/>
 
 
 

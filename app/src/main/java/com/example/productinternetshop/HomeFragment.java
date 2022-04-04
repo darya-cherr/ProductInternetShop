@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,6 +65,7 @@ public class HomeFragment extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerView;
+    private SwitchCompat switchCompat;
     private ParseAdapter parseAdapter;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
 
@@ -98,9 +100,6 @@ public class HomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-
-
     }
 
     @Override
@@ -113,12 +112,34 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         parseAdapter = new ParseAdapter(parseItems, getContext());
         recyclerView.setAdapter(parseAdapter);
-        Content content = new Content();
-        content.execute();
+        switchCompat = view.findViewById(R.id.switch_button);
+        if(!switchCompat.isChecked()){
+        Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+        content.execute();}
+        switchCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(switchCompat.isChecked()){
+                    parseAdapter.clearItemsList();
+                    Content content = new Content("https://candlesbox.com/catalog/diffuzory/");
+                    content.execute();
+                }else{
+                    parseAdapter.clearItemsList();
+                    Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+                    content.execute();
+                }
+            }
+        });
         return view;
     }
 
     private class Content extends AsyncTask<Void, Void, Void>{
+
+        String url = "";
+
+        private Content(String url){
+            this.url = url;
+        }
 
         @Override
         protected void onPreExecute() {
@@ -140,7 +161,6 @@ public class HomeFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try{
-                String url = "https://candlesbox.com/catalog/aromaticheskie-svechi/";
                 Document document = Jsoup.connect(url).get();
 
                 Elements data = document.getElementsByClass("products row").select("li");

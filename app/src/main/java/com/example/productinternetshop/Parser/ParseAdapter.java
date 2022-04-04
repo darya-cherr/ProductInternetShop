@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> {
 
-    private ArrayList<ParseItem> parseItems;
+    public ArrayList<ParseItem> parseItems;
     private Context context;
 
     public ParseAdapter(ArrayList<ParseItem> parseItems, Context context){
@@ -44,6 +44,11 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> 
     @Override
     public int getItemCount() {
         return parseItems.size();
+    }
+
+    public void clearItemsList () {
+        parseItems.clear();
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
