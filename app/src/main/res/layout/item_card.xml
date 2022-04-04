@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_height="match_parent">
+    android:layout_height="140dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -30,34 +30,38 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/item_brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="24dp"
+            android:layout_marginVertical="20dp"
             android:layout_marginStart="120dp"
             android:text="@string/item_brand"
             android:fontFamily="@font/gudea"
             android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="18sp"/>
 
         <TextView
-            android:layout_width="170dp"
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
             android:layout_marginTop="50dp"
             android:text="@string/item_name"
             android:fontFamily="@font/gudea"
-            android:textSize="18sp"/>
+            android:textSize="14sp"/>
 
         <TextView
+            android:id="@+id/item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
             android:text="@string/item_price"
             android:fontFamily="@font/gudea"
             android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/black"/>
+            android:textSize="16sp"
+            android:textColor="@color/home_text_color"/>
 
 
     </androidx.cardview.widget.CardView>
