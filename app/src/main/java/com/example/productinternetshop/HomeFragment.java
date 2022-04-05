@@ -2,9 +2,11 @@ package com.example.productinternetshop;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,18 +57,16 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private RecyclerView recyclerView;
     private SwitchCompat switchCompat;
     private ParseAdapter parseAdapter;
+    private AppCompatButton aboutButton;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
 
 
@@ -74,15 +74,6 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -105,32 +96,54 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        viewInit(view);
+        switchCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchCompatClickListener();
+            }
+        });
+
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                aboutButtonClickListener();
+            }
+        });
+        return view;
+    }
+
+    private void viewInit(View view){
         recyclerView = view.findViewById(R.id.recycler_view);
+        switchCompat = view.findViewById(R.id.switch_button);
+        aboutButton = view.findViewById(R.id.button_about_dev);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         parseAdapter = new ParseAdapter(parseItems, getContext());
         recyclerView.setAdapter(parseAdapter);
-        switchCompat = view.findViewById(R.id.switch_button);
+
         if(!switchCompat.isChecked()){
-        Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
-        content.execute();}
-        switchCompat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(switchCompat.isChecked()){
-                    parseAdapter.clearItemsList();
-                    Content content = new Content("https://candlesbox.com/catalog/diffuzory/");
-                    content.execute();
-                }else{
-                    parseAdapter.clearItemsList();
-                    Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
-                    content.execute();
-                }
-            }
-        });
-        return view;
+            Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+            content.execute();}
+    }
+
+    private void switchCompatClickListener(){
+        if(switchCompat.isChecked()){
+            parseAdapter.clearItemsList();
+            Content content = new Content("https://candlesbox.com/catalog/diffuzory/");
+            content.execute();
+        }else{
+            parseAdapter.clearItemsList();
+            Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+            content.execute();
+        }
+    }
+
+    private void aboutButtonClickListener(){
+        Intent intent = new Intent(getContext(), AboutDevActivity.class);
+        startActivity(intent);
     }
 
     private class Content extends AsyncTask<Void, Void, Void>{

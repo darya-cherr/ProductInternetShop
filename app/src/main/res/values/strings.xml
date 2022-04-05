@@ -7,10 +7,8 @@
     <string name="item_price">Price</string>
     <string name="candles">Candles</string>
     <string name="diffusers">Diffusers</string>
-
-
-
-
-
+    <string name="dev_name">Chernikova Darya</string>
+    <string name="dev_lab_num">Lab №2</string>
+    <string name="dev_group">951005</string>
 
 </resources>
