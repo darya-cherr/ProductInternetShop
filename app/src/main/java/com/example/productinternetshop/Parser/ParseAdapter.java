@@ -1,6 +1,7 @@
 package com.example.productinternetshop.Parser;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.productinternetshop.ItemDetailActivity;
 import com.example.productinternetshop.R;
 import com.squareup.picasso.Picasso;
 
@@ -51,7 +53,7 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;
         TextView brandTxt, nameTxt, priceTxt;
@@ -62,6 +64,21 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> 
             brandTxt =  itemView.findViewById(R.id.item_brand);
             nameTxt = itemView.findViewById(R.id.item_name);
             priceTxt = itemView.findViewById(R.id.item_price);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            ParseItem parseItem = parseItems.get(position);
+
+            Intent intent = new Intent(context, ItemDetailActivity.class);
+            intent.putExtra("brand", parseItem.getBrand());
+            intent.putExtra("name", parseItem.getName());
+            intent.putExtra("price",parseItem.getPrice());
+            intent.putExtra("image",parseItem.getImgUrl());
+            intent.putExtra("detailUrl",parseItem.getDetailUrl());
+            context.startActivity(intent);
         }
     }
 }

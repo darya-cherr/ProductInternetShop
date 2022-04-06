@@ -4,6 +4,7 @@
     <string name="home_dishes_shop">Candles Shop</string>
     <string name="item_brand">Brand</string>
     <string name="item_name">Name</string>
+    <string name="item_description">Description</string>
     <string name="item_price">Price</string>
     <string name="candles">Candles</string>
     <string name="diffusers">Diffusers</string>

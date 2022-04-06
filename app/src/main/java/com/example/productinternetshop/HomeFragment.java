@@ -194,7 +194,10 @@ public class HomeFragment extends Fragment {
                             .eq(i).text();
                     String price = data.select("span.price")
                             .eq(i).text();
-                    parseItems.add(new ParseItem(imgUrl, brand, name, price));
+                    String detailUrl = data.select("h5")
+                            .select("a")
+                            .eq(i).attr("href");
+                    parseItems.add(new ParseItem(imgUrl, brand, name, price, detailUrl));
                     k++;
                 }
             }catch (IOException e){

@@ -1,17 +1,18 @@
 package com.example.productinternetshop.Parser;
 
 public class ParseItem {
-    private String imgUrl, brand, name, price;
+    private String imgUrl, brand, name, price, detailUrl;
 
     public ParseItem(){
 
     }
 
-    public ParseItem(String imgUrl, String brand, String name, String price) {
+    public ParseItem(String imgUrl, String brand, String name, String price, String detailUrl) {
         this.imgUrl = imgUrl;
         this.brand = brand;
         this.name = name;
         this.price = price;
+        this.detailUrl = detailUrl;
     }
 
     public String getImgUrl() {
@@ -44,5 +45,13 @@ public class ParseItem {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDetailUrl() {
+        return detailUrl;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        this.detailUrl = detailUrl;
     }
 }
