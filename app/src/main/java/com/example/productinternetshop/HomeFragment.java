@@ -1,58 +1,39 @@
 package com.example.productinternetshop;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.productinternetshop.Parser.ParseAdapter;
 import com.example.productinternetshop.Parser.ParseItem;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.annotation.Documented;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
-import javax.net.ssl.HttpsURLConnection;
+import me.bendik.simplerangeview.SimpleRangeView;
 
 
 public class HomeFragment extends Fragment {
@@ -63,11 +44,29 @@ public class HomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    int minSelectedPrice = 0, maxSelectedPrice;
+
     private RecyclerView recyclerView;
     private SwitchCompat switchCompat;
     private ParseAdapter parseAdapter;
+
+    private AppCompatButton searchButton;
+    private LinearLayout searchLayout;
+    private SearchView searchView;
+
+    private SimpleRangeView rangeBar;
+    private TextView rangeText;
+    private LinearLayout priceFilter;
+
+    private ImageButton filterButton;
+
     private AppCompatButton aboutButton;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
+
+
+    boolean searchIsOpen;
+    boolean priceFilterIsOpen;
+
 
 
     public HomeFragment() {
@@ -111,22 +110,109 @@ public class HomeFragment extends Fragment {
                 aboutButtonClickListener();
             }
         });
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(searchIsOpen) {
+                    searchLayout.setVisibility(View.GONE);
+                    searchIsOpen = false;
+                }
+                else {
+                    searchLayout.setVisibility(View.VISIBLE);
+                    searchIsOpen = true;
+                }
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                newText = newText.toLowerCase();
+                ArrayList<ParseItem> newList = new ArrayList<>();
+                for (ParseItem parseItem : parseItems){
+                    String brand = parseItem.getBrand().toLowerCase();
+                    String name = parseItem.getName().toLowerCase();
+                    if(brand.contains(newText) || name.contains(newText)){
+                        newList.add(parseItem);
+                    }
+                }
+                parseAdapter.setFilter(newList);
+                return true;
+            }
+        });
+
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(priceFilterIsOpen) {
+                    priceFilter.setVisibility(View.GONE);
+                     priceFilterIsOpen = false;
+                }
+                else {
+                    String maxPrice = parseAdapter.getMaxPrice();
+                    maxSelectedPrice = Integer.parseInt(maxPrice);
+                    rangeText.setText("0-"+maxPrice);
+                    rangeBar.setCount(Integer.parseInt(maxPrice));
+                    priceFilter.setVisibility(View.VISIBLE);
+                    priceFilterIsOpen = true;
+                }
+            }
+        });
+
+        rangeBar.setOnChangeRangeListener(new SimpleRangeView.OnChangeRangeListener() {
+            @Override
+            public void onRangeChanged(@NonNull SimpleRangeView simpleRangeView, int i, int i1) {
+                rangeText.setText(String.valueOf(i) + "-" + String.valueOf(i1));
+                minSelectedPrice = i;
+                maxSelectedPrice = i1;
+                ArrayList<ParseItem> newList = new ArrayList<>();
+                for (ParseItem parseItem : parseItems){
+                    int price = Integer.parseInt(parseItem.getPrice());
+                    if(price >= minSelectedPrice && price <= maxSelectedPrice){
+                        newList.add(parseItem);
+                    }
+                }
+                parseAdapter.setFilter(newList);
+            }
+        });
         return view;
     }
+
 
     private void viewInit(View view){
         recyclerView = view.findViewById(R.id.recycler_view);
         switchCompat = view.findViewById(R.id.switch_button);
         aboutButton = view.findViewById(R.id.button_about_dev);
 
+        searchButton = view.findViewById(R.id.search_btn);
+        searchLayout = view.findViewById(R.id.search);
+        searchView = view.findViewById(R.id.search_view);
+
+        searchIsOpen = false;
+        priceFilterIsOpen = false;
+
+        rangeBar = view.findViewById(R.id.range_bar);
+        rangeText = view.findViewById(R.id.range_bar_text);
+        priceFilter =  view.findViewById(R.id.price_filter);
+
+        filterButton = view.findViewById(R.id.filter_button);
+
+
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         parseAdapter = new ParseAdapter(parseItems, getContext());
         recyclerView.setAdapter(parseAdapter);
 
-        if(!switchCompat.isChecked()){
-            Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
-            content.execute();}
+        Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+        content.execute();
+
     }
 
     private void switchCompatClickListener(){
@@ -134,10 +220,12 @@ public class HomeFragment extends Fragment {
             parseAdapter.clearItemsList();
             Content content = new Content("https://candlesbox.com/catalog/diffuzory/");
             content.execute();
+
         }else{
             parseAdapter.clearItemsList();
             Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
             content.execute();
+
         }
     }
 
@@ -146,12 +234,14 @@ public class HomeFragment extends Fragment {
         startActivity(intent);
     }
 
-    private class Content extends AsyncTask<Void, Void, Void>{
+    private class Content extends AsyncTask<Void, Void, ArrayList<ParseItem>> {
 
         String url = "";
 
+
         private Content(String url){
             this.url = url;
+
         }
 
         @Override
@@ -161,7 +251,7 @@ public class HomeFragment extends Fragment {
 
         @SuppressLint("NotifyDataSetChanged")
         @Override
-        protected void onPostExecute(Void unused) {
+        protected void onPostExecute(ArrayList<ParseItem> unused) {
             super.onPostExecute(unused);
             parseAdapter.notifyDataSetChanged();
         }
@@ -172,7 +262,7 @@ public class HomeFragment extends Fragment {
         }
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected ArrayList<ParseItem> doInBackground(Void... voids) {
             try{
                 Document document = Jsoup.connect(url).get();
 
@@ -189,15 +279,17 @@ public class HomeFragment extends Fragment {
                             .select("a[href]")
                             .eq(i).text();
                     brand = brand.substring(brand.lastIndexOf(',')+2);
-                    Log.d("MyLog", brand);
                     String name = data.select("div.sostav")
                             .eq(i).text();
                     String price = data.select("span.price")
                             .eq(i).text();
+                    price = price.substring(0, price.lastIndexOf("р")-1);
                     String detailUrl = data.select("h5")
                             .select("a")
                             .eq(i).attr("href");
+
                     parseItems.add(new ParseItem(imgUrl, brand, name, price, detailUrl));
+
                     k++;
                 }
             }catch (IOException e){

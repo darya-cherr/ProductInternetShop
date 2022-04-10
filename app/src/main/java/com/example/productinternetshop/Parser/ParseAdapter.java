@@ -53,6 +53,22 @@ public class ParseAdapter extends RecyclerView.Adapter<ParseAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    public String getMaxPrice(){
+        int maxPrice = 0;
+        for(ParseItem parseItem : parseItems){
+            if(maxPrice < Integer.parseInt(parseItem.getPrice())){
+                maxPrice = Integer.parseInt(parseItem.getPrice());
+            }
+        }
+        return Integer.toString(maxPrice);
+    }
+
+    public void setFilter(ArrayList<ParseItem> newList){
+        parseItems = new ArrayList<>();
+        parseItems.addAll(newList);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         ImageView imageView;

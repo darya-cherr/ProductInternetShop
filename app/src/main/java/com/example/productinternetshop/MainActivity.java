@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.productinternetshop.Utilities.NetworkChangeListener;
@@ -25,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         bottomNavigation = findViewById(R.id.bottom_navbar);
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_icons8_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_search_svgrepo_com));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_heart_svgrepo_com));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_user_profile_svgrepo_com));
+        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_heart_svgrepo_com));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_user_profile_svgrepo_com));
 
         bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
@@ -40,12 +41,9 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new HomeFragment();
                         break;
                     case 2:
-                        fragment = new ExploreFragment();
-                        break;
-                    case 3:
                         fragment = new FavouriteFragment();
                         break;
-                    case 4:
+                    case 3:
                         fragment = new ProfileFragment();
                         break;
                 }

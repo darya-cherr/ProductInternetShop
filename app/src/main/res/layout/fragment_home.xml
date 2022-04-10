@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".HomeFragment"
-    android:background="@drawable/background"
-    android:backgroundTint="#6DFFFFFF"
-    android:backgroundTintMode="src_over">
+    tools:context=".HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,14 +13,14 @@
         android:background="@drawable/border_rect">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_about_dev"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/button_about_dev"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
             android:background="@drawable/button_about_dev"
-            android:layout_marginLeft="8dp"
-            android:text="About"
-            android:textSize="10sp"
-            android:layout_centerVertical="true"/>
+            android:text="@string/about"
+            android:textSize="10sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,9 +29,98 @@
             android:fontFamily="@font/gudea"
             android:text="@string/home_dishes_shop"
             android:textColor="@color/home_text_color"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/search_btn"
+            android:background="@drawable/ic_search_svgrepo_com"
+            android:backgroundTint="@color/item_color"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <ImageButton
+                android:id="@+id/filter_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_baseline_filter_alt_24" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/price_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/item_price"
+                android:textSize="20sp"
+                android:fontFamily="@font/gudea"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/range_bar_text"
+                android:text="0-50000"
+                android:layout_marginStart="20dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/gudea"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+        <me.bendik.simplerangeview.SimpleRangeView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/range_bar"
+            android:layout_marginBottom="8dp"
+            app:count="10"
+            app:activeLineColor="@color/home_text_color"
+            app:lineColor="@color/item_color"
+            app:activeTickColor="@color/home_text_color"
+            app:activeThumbColor="@color/home_text_color"
+            app:movable="true"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,6 +135,7 @@
         android:textOff="@string/candles"
         android:textOn="@string/diffusers"
         android:layout_gravity="center"
+        android:layout_marginTop="4dp"
         android:thumb="@drawable/switch_thumb"
         app:track="@drawable/switch_track"
         app:showText="true">
@@ -59,7 +146,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"/>
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="4dp"/>
 
 
 
