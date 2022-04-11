@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ProductInternetShop</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="home_dishes_shop">Candles Shop</string>
     <string name="item_brand">Brand</string>
     <string name="item_name">Name</string>
@@ -12,5 +12,8 @@
     <string name="dev_lab_num">Lab №2</string>
     <string name="dev_group">951005</string>
     <string name="about">About</string>
+    <string name="oops">Упс!</string>
+    <string name="sign_in">Sign in with Google</string>
+    <string name="no_auth">Вы еще не зарегистрировались!</string>
 
 </resources>

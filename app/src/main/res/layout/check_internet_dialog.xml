@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="Упс!"
         android:fontFamily="@font/gudea"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:textColor="@color/home_text_color"
         android:textStyle="bold"/>
 
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="Проверьте интернет соединение."
         android:fontFamily="@font/gudea"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="@color/home_text_color"/>
 
     <androidx.appcompat.widget.AppCompatButton

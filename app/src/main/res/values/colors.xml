@@ -11,4 +11,5 @@
     <color name="item_color">#9DBEAB</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="sign_in_btn">#FEB5A6</color>
 </resources>
