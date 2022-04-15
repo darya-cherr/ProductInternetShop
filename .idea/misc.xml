@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1725" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/border_rect.xml" value="0.171" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/button_about_dev.xml" value="0.2095" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_heart_svgrepo_com.xml" value="0.171" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_icons8_home.xml" value="0.171" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_search_svgrepo_com.xml" value="0.171" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_user_profile_svgrepo_com.xml" value="0.171" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/rect_shadow.xml" value="0.2095" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/sign_in_btn.xml" value="0.1555" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/switch_thumb.xml" value="0.2095" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/switch_track.xml" value="0.2095" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/activity_about_dev.xml" value="0.2" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/activity_item_detail.xml" value="0.2" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/activity_main.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/check_internet_dialog.xml" value="0.264" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/filter_dialog.xml" value="0.2" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/fragment_explore.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/fragment_favourite.xml" value="0.21784420289855072" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/item_card.xml" value="0.264" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/menu/toolbar_item.xml" value="0.2526041666666667" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1585" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1585" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
