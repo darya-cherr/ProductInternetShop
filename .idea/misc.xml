@@ -6,6 +6,8 @@
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1725" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/border_rect.xml" value="0.171" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/button_about_dev.xml" value="0.2095" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.1725" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.1725" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_heart_svgrepo_com.xml" value="0.171" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_icons8_home.xml" value="0.171" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/drawable/ic_search_svgrepo_com.xml" value="0.171" />
@@ -24,6 +26,7 @@
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/item_card.xml" value="0.264" />
+        <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/layout/item_card_fav.xml" value="0.23697916666666666" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/menu/toolbar_item.xml" value="0.2526041666666667" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1585" />
         <entry key="..\:/Users/Dasha_2/AndroidStudioProjects/ProductInternetShop/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1585" />

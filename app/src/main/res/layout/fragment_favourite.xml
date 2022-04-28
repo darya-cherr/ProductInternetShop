@@ -5,11 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".FavouriteFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fav_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Favourite"
-        android:textSize="48sp"
-        android:gravity="center"/>
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/emptyTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="There is nothing here yet"
+        android:layout_gravity="center"
+        android:fontFamily="@font/gudea"
+        android:textSize="32sp"/>
 
 </FrameLayout>

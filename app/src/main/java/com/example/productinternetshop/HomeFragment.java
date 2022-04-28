@@ -63,14 +63,13 @@ public class HomeFragment extends Fragment {
     private AppCompatButton aboutButton;
     private ArrayList<ParseItem> parseItems = new ArrayList<>();
 
-
     boolean searchIsOpen;
     boolean priceFilterIsOpen;
 
 
 
     public HomeFragment() {
-        // Required empty public constructor
+
     }
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -210,7 +209,8 @@ public class HomeFragment extends Fragment {
         parseAdapter = new ParseAdapter(parseItems, getContext());
         recyclerView.setAdapter(parseAdapter);
 
-        Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+
+        Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/", true);
         content.execute();
 
     }
@@ -218,12 +218,12 @@ public class HomeFragment extends Fragment {
     private void switchCompatClickListener(){
         if(switchCompat.isChecked()){
             parseAdapter.clearItemsList();
-            Content content = new Content("https://candlesbox.com/catalog/diffuzory/");
+            Content content = new Content("https://candlesbox.com/catalog/diffuzory/", false);
             content.execute();
 
         }else{
             parseAdapter.clearItemsList();
-            Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/");
+            Content content = new Content("https://candlesbox.com/catalog/aromaticheskie-svechi/", true);
             content.execute();
 
         }
@@ -234,14 +234,16 @@ public class HomeFragment extends Fragment {
         startActivity(intent);
     }
 
+
     private class Content extends AsyncTask<Void, Void, ArrayList<ParseItem>> {
 
         String url = "";
+        boolean isCandle;
 
 
-        private Content(String url){
+        private Content(String url, boolean isCandle){
             this.url = url;
-
+            this.isCandle = isCandle;
         }
 
         @Override
@@ -254,6 +256,7 @@ public class HomeFragment extends Fragment {
         protected void onPostExecute(ArrayList<ParseItem> unused) {
             super.onPostExecute(unused);
             parseAdapter.notifyDataSetChanged();
+
         }
 
         @Override
@@ -287,11 +290,15 @@ public class HomeFragment extends Fragment {
                     String detailUrl = data.select("h5")
                             .select("a")
                             .eq(i).attr("href");
-
-                    parseItems.add(new ParseItem(imgUrl, brand, name, price, detailUrl));
+                    if(isCandle) {
+                        parseItems.add(new ParseItem(imgUrl, brand, name, price, detailUrl, "0", i));
+                    }else{
+                        parseItems.add(new ParseItem(imgUrl, brand, name, price, detailUrl, "0", i+22));
+                    }
 
                     k++;
                 }
+
             }catch (IOException e){
                 e.printStackTrace();
             }

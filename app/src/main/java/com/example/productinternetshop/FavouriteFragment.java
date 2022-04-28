@@ -1,42 +1,44 @@
 package com.example.productinternetshop;
 
+import android.annotation.SuppressLint;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavouriteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.example.productinternetshop.Parser.ParseItem;
+import com.example.productinternetshop.Utilities.FavAdapter;
+import com.example.productinternetshop.Utilities.FavDB;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class FavouriteFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+    private RecyclerView recyclerView;
+    private TextView textView;
+    private FavDB favDB;
+    private List<ParseItem> favList = new ArrayList<>();
+    private FavAdapter favAdapter;
+
     private String mParam1;
     private String mParam2;
 
     public FavouriteFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavouriteFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FavouriteFragment newInstance(String param1, String param2) {
         FavouriteFragment fragment = new FavouriteFragment();
         Bundle args = new Bundle();
@@ -58,7 +60,49 @@ public class FavouriteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite, container, false);
+        View view = inflater.inflate(R.layout.fragment_favourite, container, false);
+
+        favDB = new FavDB(getActivity());
+        recyclerView = view.findViewById(R.id.fav_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        textView = view.findViewById(R.id.emptyTxt);
+
+        loadData();
+
+        return view;
+    }
+
+
+    @SuppressLint("Range")
+    private void loadData() {
+        if(favList != null){
+            favList.clear();
+        }
+        SQLiteDatabase db = favDB.getReadableDatabase();
+        Cursor cursor = favDB.select_all_favorite_list();
+        try{
+            while(cursor.moveToNext()){
+               String name = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_NAME));
+               String brand = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_BRAND));
+               int key_id = cursor.getInt(cursor.getColumnIndex(FavDB.KEY_ID));
+               String imgUrl = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_IMAGE));
+               String price = cursor.getString(cursor.getColumnIndex(FavDB.ITEM_PRICE));
+
+               ParseItem parseItem = new ParseItem(imgUrl,brand,name,price,key_id);
+               favList.add(parseItem);
+            }
+        }finally{
+            if (cursor != null && cursor.isClosed())
+                cursor.close();
+            db.close();
+        }
+
+        if(favList != null) textView.setVisibility(View.GONE);
+        favAdapter = new FavAdapter(getActivity(),favList);
+
+        recyclerView.setAdapter(favAdapter);
+
     }
 }
